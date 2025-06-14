@@ -1,8 +1,5 @@
 // src/components/Footer.js
 import React, { useRef, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
     const footerRef = useRef(null);
@@ -41,13 +38,10 @@ const Footer = () => {
             <div className="container">
                 <div className="social-links" ref={socialLinksRef}>
                     <a href="https://github.com/LitebohoMajoro" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                        <FontAwesomeIcon icon={faGithub} />
                     </a>
                     <a href="mailto:litebohomajoro2580@gmail.com" aria-label="Send Email">
-                        <FontAwesomeIcon icon={faEnvelope} />
                     </a>
                     <a href="https://wa.me/+26653359840" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat">
-                        <FontAwesomeIcon icon={faWhatsapp} />
                     </a>
                 </div>
                 <p className="copyright">

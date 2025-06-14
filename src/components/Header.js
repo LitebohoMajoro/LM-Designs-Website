@@ -1,9 +1,6 @@
 // src/components/Header.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPalette, faBars } from '@fortawesome/free-solid-svg-icons';
-
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -35,7 +32,6 @@ const Header = () => {
         <header>
             <div className="container navbar">
                 <div className="logo">
-                    <FontAwesomeIcon icon={faPalette} />
                     LMDesigns
                 </div>
                 <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
@@ -50,7 +46,6 @@ const Header = () => {
                     </li>
                 </ul>
                 <div className="hamburger" onClick={toggleMobileMenu}>
-                    <FontAwesomeIcon icon={faBars} />
                 </div>
             </div>
         </header>
