@@ -92,19 +92,24 @@ body::before {
 header {
     background: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(10px);
-    padding: 1.2rem 0;
+    padding: 1.2rem 0; /* This padding affects the height */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    /* Add a min-height to ensure a consistent header size, useful for mobile */
+    min-height: 70px; /* Set a default minimum height */
+    display: flex; /* Ensure flex for vertical centering of content */
+    align-items: center; /* Vertically center content */
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* Ensure navbar takes full width of header container */
 }
 
 .logo {
@@ -160,10 +165,38 @@ header {
     width: 100%;
 }
 
+/* Hamburger Bar Styling */
 .hamburger {
-    display: none;
+    display: none; /* Hidden by default, shown in media query */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
     cursor: pointer;
+    z-index: 1001; /* Ensure it's above other content when open */
 }
+
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--light); /* Use your light color variable */
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation for hamburger icon when active */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
 
 /* Hero Section with Profile Photo */
 .hero {
@@ -172,7 +205,7 @@ header {
     display: flex;
     align-items: center;
     position: relative;
-    padding-top: 80px; /* Space for fixed header */
+    padding-top: 80px; /* Default space for fixed header on larger screens */
 }
 
 .hero-content {
@@ -197,7 +230,7 @@ header {
     padding-right: 0; /* Removed old padding */
     /* Ensure text takes full width on small screens before photo */
     min-width: 300px; /* Prevent text from becoming too narrow */
-    margin-top: 50px; /* Pushes the h1 down */
+    margin-top: 50px; /* Pushes the h1 down on desktop */
 }
 
 .hero-photo {
@@ -630,7 +663,7 @@ footer.visible {
 
 /* Base font size for all elements, relative to root (16px default) */
 html {
-  font-size: 100%; /* Ensures 1rem = 16px by default across browsers */
+    font-size: 100%; /* Ensures 1rem = 16px by default across browsers */
 }
 
 /* Smallest mobile phones first (mobile-first approach if building from scratch) */
@@ -645,6 +678,10 @@ html {
     }
 
     /* Header */
+    header {
+        min-height: 60px; /* Adjust header height for very small screens */
+        padding: 0.8rem 0; /* Adjust padding to match new min-height */
+    }
     .logo {
         font-size: 1.5rem; /* Smaller logo */
     }
@@ -655,7 +692,8 @@ html {
 
     /* Hero Section */
     .hero {
-        padding-top: 60px; /* Adjust padding for potentially smaller header on very small screens */
+        /* Adjusted padding-top to ensure content clears the smaller fixed header */
+        padding-top: 80px; /* Increased from 60px to provide more space */
         min-height: auto; /* Allow hero to shrink */
         height: auto; /* Allow hero to shrink */
     }
@@ -773,21 +811,15 @@ html {
 
 /* Medium-sized devices (e.g., tablets in portrait, larger phones) */
 @media (min-width: 481px) and (max-width: 768px) {
-    /* You already have a good foundation for this breakpoint.
-        I've refined some values and added more consistent scaling. */
-
-    body {
-        font-size: 15px; /* Slightly smaller base font for tablets/larger phones */
-    }
-
-    .container {
-        padding: 0 20px;
-    }
-
     /* Header */
+    header {
+        min-height: 70px; /* Ensure a consistent header height */
+    }
+
     .nav-links {
         position: fixed;
-        top: 70px; /* Adjust if your header height changes */
+        /* Updated top to match new header min-height */
+        top: 70px;
         right: -100%;
         flex-direction: column;
         background: rgba(18, 18, 18, 0.95);
@@ -807,12 +839,13 @@ html {
     }
 
     .hamburger {
-        display: block;
+        display: flex; /* Changed from 'block' to 'flex' for existing hamburger structure */
     }
 
     /* Hero Section */
     .hero {
-        padding-top: 80px;
+        /* This is the primary adjustment for overlap */
+        padding-top: 90px; /* Increased from 80px for more clearance */
         height: auto; /* Allow height to adjust */
         min-height: 80vh; /* Ensure some minimum height */
     }
@@ -878,7 +911,6 @@ html {
       max-width: 200px; /* Adjusted max-width for better two-column layout on tablets */
     }
 
-
     /* Disable cursor effects on mobile */
     body {
         cursor: default;
@@ -890,7 +922,17 @@ html {
 
 /* Larger screens / Desktops (>= 769px) - Optional, for fine-tuning */
 @media (min-width: 769px) {
-    /* You can add specific styles here if you want things to look different on very large screens */
+    /* Ensure header height and padding are consistent for desktop */
+    header {
+        min-height: 80px; /* Or whatever your desired desktop height is */
+        padding: 1.2rem 0; /* Maintain original padding */
+    }
+
+    /* Ensure hero padding matches desktop header height */
+    .hero {
+        padding-top: 90px; /* Ensure this is slightly more than header height on desktop */
+    }
+
     .hero-content {
         flex-direction: row-reverse; /* Ensure elements are side-by-side with photo on right */
         text-align: left; /* Align text to left */
@@ -914,74 +956,5 @@ html {
     }
     .cursor-dot, .cursor-light {
         display: block; /* Or whatever initial display value they have */
-    }
-}
-/* Add these styles to your main CSS file, preferably near your .hamburger styles */
-
-/* Hamburger Bar Styling */
-.hamburger {
-    display: none; /* Hidden by default, shown in media query */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    z-index: 1001; /* Ensure it's above other content when open */
-}
-
-.hamburger .bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--light); /* Use your light color variable */
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Animation for hamburger icon when active */
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-}
-
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-}
-
-/* Responsive adjustments (ensure these are within your @media (max-width: 768px) block or a similar mobile breakpoint) */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex; /* Show hamburger on smaller screens */
-    }
-
-    .nav-links {
-        /* Keep existing styles */
-        right: -100%; /* Hidden by default */
-        position: fixed;
-        top: 70px; /* Adjust based on your header height */
-        flex-direction: column;
-        background: rgba(18, 18, 18, 0.95);
-        width: 100%;
-        height: calc(100vh - 70px); /* Make menu take full height below header */
-        text-align: center;
-        transition: right 0.5s ease-in-out; /* Add transition for smooth slide */
-        padding: 2rem 0;
-        z-index: 999;
-        overflow-y: auto; /* Allow scrolling if menu content overflows */
-    }
-
-    .nav-links.active {
-        right: 0; /* Slide in menu */
-    }
-
-    .nav-links li {
-        margin: 1.5rem 0; /* Space out menu items */
-    }
-
-    .nav-links a {
-        padding: 10px 0; /* Make links larger tap targets */
-        font-size: 1.2rem; /* Larger font size for readability */
     }
 }
