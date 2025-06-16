@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 100%; /* Ensures 1rem = 16px by default across browsers */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, var(--darker), var(--dark));
@@ -24,8 +28,6 @@ body {
     min-height: 100vh;
     position: relative;
     cursor: all-scroll; /* This will be overridden for touch devices */
-
-    /* Add a base font size using rem for better scaling */
     font-size: 16px; /* Base font size for desktop */
 }
 
@@ -85,31 +87,30 @@ body::before {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Changed to fixed px for outer padding, will adjust in media queries */
+    padding: 0 20px;
 }
 
 /* Header Styles */
 header {
     background: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(10px);
-    padding: 1.2rem 0; /* This padding affects the height */
+    padding: 1.2rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-    /* Add a min-height to ensure a consistent header size, useful for mobile */
-    min-height: 70px; /* Set a default minimum height */
-    display: flex; /* Ensure flex for vertical centering of content */
-    align-items: center; /* Vertically center content */
+    min-height: 70px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Ensure navbar takes full width of header container */
+    width: 100%;
 }
 
 .logo {
@@ -167,19 +168,19 @@ header {
 
 /* Hamburger Bar Styling */
 .hamburger {
-    display: none; /* Hidden by default, shown in media query */
+    display: none;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
     cursor: pointer;
-    z-index: 1001; /* Ensure it's above other content when open */
+    z-index: 1001;
 }
 
 .hamburger .bar {
     width: 100%;
     height: 3px;
-    background-color: var(--light); /* Use your light color variable */
+    background-color: var(--light);
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
 }
@@ -200,24 +201,25 @@ header {
 
 /* Hero Section with Profile Photo */
 .hero {
-    /* Use min-height and padding-top to ensure content is visible below fixed header */
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     padding-top: 80px; /* Default space for fixed header on larger screens */
+    height: auto; /* Allow hero to adjust height on smaller screens */
 }
 
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: space-around; /* Changed to space-around for better spacing */
+    justify-content: space-around;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Consistent padding */
+    padding: 0 20px;
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    flex-direction: row-reverse; /* Puts photo on the right */
+    flex-direction: row-reverse; /* Default: Puts photo on the right */
+    text-align: left; /* Default text alignment */
 }
 
 .hero-text {
@@ -225,10 +227,9 @@ header {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
-    flex: 1;
-    padding-left: 50px; /* Adjusted padding to the left as photo is on the right */
-    padding-right: 0; /* Removed old padding */
-    /* Ensure text takes full width on small screens before photo */
+    flex: 1; /* Allow text to grow and shrink */
+    padding-left: 50px; /* Space on left of text, as photo is on right */
+    padding-right: 0;
     min-width: 300px; /* Prevent text from becoming too narrow */
     margin-top: 50px; /* Pushes the h1 down on desktop */
 }
@@ -246,7 +247,8 @@ header {
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
     position: relative;
     z-index: 2;
-    margin-left: 0; /* Removed auto margin, flex-direction handles it */
+    margin-left: 30px; /* Space between photo and text */
+    margin-right: 0;
 }
 
 .hero-photo img {
@@ -261,7 +263,7 @@ header {
 }
 
 .hero h1 {
-    font-size: 3.5rem; /* Will scale down in media queries */
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
@@ -274,7 +276,7 @@ header {
 }
 
 .hero p {
-    font-size: 1.2rem; /* Will scale down in media queries */
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
 }
@@ -312,7 +314,7 @@ header {
 }
 
 .filter-section h2 {
-    font-size: 2.5rem; /* Will scale down in media queries */
+    font-size: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
     display: inline-block;
@@ -333,8 +335,8 @@ header {
 .filter-buttons {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Ensures buttons wrap to next line on smaller screens */
-    gap: 15px; /* Spacing between buttons */
+    flex-wrap: wrap;
+    gap: 15px;
     margin-bottom: 3rem;
 }
 
@@ -370,7 +372,6 @@ header {
 /* Portfolio Grid */
 .portfolio-grid {
     display: grid;
-    /* Adjusted minmax for better mobile stacking. 1fr means it will take full width. */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
     padding: 0 0 5rem;
@@ -413,7 +414,7 @@ header {
 .portfolio-img img,
 .portfolio-img video {
     width: 100%;
-    height: auto; /* IMPORTANT: This maintains aspect ratio */
+    height: auto;
     display: block;
     border-radius: 10px;
     object-fit: cover;
@@ -543,10 +544,10 @@ header {
 
 .contact-methods {
     display: flex;
-    flex-wrap: wrap; /* Allows methods to wrap on smaller screens */
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 15px;
-    justify-content: center; /* Center methods on smaller screens */
+    justify-content: center;
 }
 
 .contact-method {
@@ -561,10 +562,9 @@ header {
     color: var(--light);
     opacity: 0;
     transform: translateY(20px);
-    /* Make contact method items flexible */
-    flex: 1 1 auto; /* Allow items to grow and shrink */
-    min-width: 150px; /* Ensure they don't get too small */
-    max-width: 250px; /* Cap their max width for larger screens within the flex wrap */
+    flex: 1 1 auto;
+    min-width: 150px;
+    max-width: 250px;
 }
 
 .contact-method.visible {
@@ -631,7 +631,7 @@ footer.visible {
     font-size: 0.9rem;
 }
 
-/* Animations (no changes needed here, they are well-defined) */
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -661,99 +661,88 @@ footer.visible {
 
 /* Responsive Design - Adjustments and additions */
 
-/* Base font size for all elements, relative to root (16px default) */
-html {
-    font-size: 100%; /* Ensures 1rem = 16px by default across browsers */
-}
-
-/* Smallest mobile phones first (mobile-first approach if building from scratch) */
+/* Smallest mobile phones first */
 @media (max-width: 480px) {
-    /* General adjustments for very small screens */
     body {
-        font-size: 14px; /* Smaller base font for tiny screens */
+        font-size: 14px;
+        cursor: default; /* Disable cursor effect */
+    }
+    .cursor-dot, .cursor-light {
+        display: none;
     }
 
     .container {
-        padding: 0 15px; /* Tighter padding on very small screens */
+        padding: 0 15px;
     }
 
     /* Header */
     header {
-        min-height: 60px; /* Adjust header height for very small screens */
-        padding: 0.8rem 0; /* Adjust padding to match new min-height */
+        min-height: 60px;
+        padding: 0.8rem 0;
     }
     .logo {
-        font-size: 1.5rem; /* Smaller logo */
+        font-size: 1.5rem;
     }
-
     .logo i {
-        font-size: 1.7rem; /* Smaller icon */
+        font-size: 1.7rem;
     }
 
     /* Hero Section */
     .hero {
-        /* Adjusted padding-top to ensure content clears the smaller fixed header */
-        padding-top: 80px; /* Increased from 60px to provide more space */
-        min-height: auto; /* Allow hero to shrink */
-        height: auto; /* Allow hero to shrink */
+        padding-top: 80px; /* Adjust based on header height */
+        min-height: auto;
+        height: auto;
     }
-
     .hero-content {
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: column-reverse; /* Photo above text */
         text-align: center;
+        padding-top: 40px; /* Space above photo */
+        padding-bottom: 40px; /* Space below text */
     }
-
     .hero-photo {
-        width: 200px; /* Smaller photo */
+        width: 200px;
         height: 200px;
-        margin: 0 auto 30px auto; /* Center photo and add space below */
+        margin: 0 auto 30px auto; /* Center and add space below */
     }
-
     .hero-text {
-        padding-right: 0; /* Remove right padding */
-        padding-left: 0; /* Remove left padding */
-        padding-bottom: 20px; /* Add space below text when photo is above */
-        margin-top: 0; /* Reset margin-top for mobile */
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0; /* Reset margin-top */
+        margin-bottom: 0; /* No extra margin, already handled by hero-photo */
     }
-
     .hero h1 {
-        font-size: 2rem; /* Smaller heading for phones */
+        font-size: 2rem;
         margin-bottom: 0.8rem;
     }
-
     .hero p {
-        font-size: 1rem; /* Smaller paragraph text */
+        font-size: 1rem;
         margin-bottom: 1.5rem;
     }
-
     .cta-button {
-        padding: 10px 25px; /* Slightly smaller button */
+        padding: 10px 25px;
         font-size: 0.9rem;
     }
 
     /* Filter Section */
     .filter-section h2 {
-        font-size: 2rem; /* Smaller filter section heading */
+        font-size: 2rem;
     }
-
     .filter-buttons {
-        gap: 8px; /* Tighter button spacing */
+        gap: 8px;
         margin-bottom: 2rem;
     }
-
     .filter-btn {
-        padding: 6px 12px; /* Smaller buttons */
+        padding: 6px 12px;
         font-size: 0.8rem;
     }
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Force single column on very small screens */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
-
     .portfolio-info {
-        padding: 15px; /* Smaller padding inside portfolio items */
+        padding: 15px;
     }
 
     /* Contact Section */
@@ -761,22 +750,19 @@ html {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-
     .form-group input,
     .form-group textarea,
     .form-group select {
-        padding: 10px 12px; /* Smaller form fields */
+        padding: 10px 12px;
     }
-
     .contact-methods {
-        flex-direction: column; /* Stack contact methods vertically */
-        align-items: center; /* Center them when stacked */
+        flex-direction: column;
+        align-items: center;
     }
-
     .contact-method {
-        width: 90%; /* Make them take most of the width */
-        max-width: 300px; /* Limit max width even when stacked */
-        padding: 10px 15px; /* Adjust padding */
+        width: 90%;
+        max-width: 300px;
+        padding: 10px 15px;
         font-size: 0.9rem;
     }
 
@@ -784,41 +770,35 @@ html {
     footer {
         padding: 1.5rem 0;
     }
-
     .social-links {
-        gap: 15px; /* Tighter social link spacing */
+        gap: 15px;
         margin-bottom: 1rem;
     }
-
     .social-links a {
-        width: 40px; /* Smaller social icons */
+        width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-
     .copyright {
         font-size: 0.8rem;
-    }
-
-    /* Disable cursor effects on small devices */
-    body {
-        cursor: default;
-    }
-    .cursor-dot, .cursor-light {
-        display: none;
     }
 }
 
 /* Medium-sized devices (e.g., tablets in portrait, larger phones) */
 @media (min-width: 481px) and (max-width: 768px) {
-    /* Header */
-    header {
-        min-height: 70px; /* Ensure a consistent header height */
+    body {
+        cursor: default; /* Disable cursor effect */
+    }
+    .cursor-dot, .cursor-light {
+        display: none;
     }
 
+    /* Header */
+    header {
+        min-height: 70px;
+    }
     .nav-links {
         position: fixed;
-        /* Updated top to match new header min-height */
         top: 70px;
         right: -100%;
         flex-direction: column;
@@ -829,62 +809,53 @@ html {
         padding: 2rem 0;
         z-index: 999;
     }
-
     .nav-links.active {
         right: 0;
     }
-
     .nav-links li {
         margin: 1.5rem 0;
     }
-
     .hamburger {
-        display: flex; /* Changed from 'block' to 'flex' for existing hamburger structure */
+        display: flex;
     }
 
     /* Hero Section */
     .hero {
-        /* This is the primary adjustment for overlap */
-        padding-top: 90px; /* Increased from 80px for more clearance */
-        height: auto; /* Allow height to adjust */
-        min-height: 80vh; /* Ensure some minimum height */
+        padding-top: 90px; /* More clearance for header */
+        height: auto;
+        min-height: 80vh;
     }
-
     .hero-content {
-        flex-direction: column; /* Stack text and photo vertically */
+        flex-direction: column-reverse; /* Photo above text */
         text-align: center;
+        padding-top: 40px; /* Space above photo */
+        padding-bottom: 40px; /* Space below text */
     }
-
-    .hero-text {
-        padding-right: 0;
-        padding-left: 0; /* Remove left padding for mobile */
-        margin-bottom: 30px; /* Space between text and photo */
-        margin-top: 0; /* Reset margin-top for mobile */
-    }
-
     .hero-photo {
-        width: 280px; /* Slightly smaller photo */
+        width: 280px;
         height: 280px;
-        margin: 0 auto; /* Center photo */
+        margin: 0 auto 30px auto; /* Center and add space below */
     }
-
+    .hero-text {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0;
+        margin-bottom: 0; /* No extra margin, handled by hero-photo */
+    }
     .hero h1 {
-        font-size: 2.8rem; /* Scale down heading */
+        font-size: 2.8rem;
     }
-
     .hero p {
-        font-size: 1.1rem; /* Scale down paragraph */
+        font-size: 1.1rem;
     }
 
     /* Filter Section */
     .filter-section h2 {
         font-size: 2.2rem;
     }
-
     .filter-buttons {
         gap: 10px;
     }
-
     .filter-btn {
         padding: 8px 15px;
         font-size: 0.9rem;
@@ -892,7 +863,7 @@ html {
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjusted minmax */
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
     }
 
@@ -900,61 +871,49 @@ html {
     .contact-container h2 {
         font-size: 2.2rem;
     }
-
     .contact-methods {
-        flex-direction: row; /* Keep them in a row for tablets, but they will wrap */
+        flex-direction: row; /* Keep in row, but allow wrap */
         justify-content: center;
         gap: 15px;
     }
-
     .contact-method {
-      max-width: 200px; /* Adjusted max-width for better two-column layout on tablets */
-    }
-
-    /* Disable cursor effects on mobile */
-    body {
-        cursor: default;
-    }
-    .cursor-dot, .cursor-light {
-        display: none;
+      max-width: 200px;
     }
 }
 
-/* Larger screens / Desktops (>= 769px) - Optional, for fine-tuning */
+/* Larger screens / Desktops (>= 769px) */
 @media (min-width: 769px) {
-    /* Ensure header height and padding are consistent for desktop */
-    header {
-        min-height: 80px; /* Or whatever your desired desktop height is */
-        padding: 1.2rem 0; /* Maintain original padding */
-    }
-
-    /* Ensure hero padding matches desktop header height */
-    .hero {
-        padding-top: 90px; /* Ensure this is slightly more than header height on desktop */
-    }
-
-    .hero-content {
-        flex-direction: row-reverse; /* Ensure elements are side-by-side with photo on right */
-        text-align: left; /* Align text to left */
-    }
-
-    .hero-text {
-        padding-left: 50px; /* Restore desktop padding */
-        padding-right: 0;
-        margin-bottom: 0;
-        margin-top: 50px; /* Keep h1 lower on desktop */
-    }
-
-    .hero-photo {
-        margin-left: 0; /* Removed auto margin */
-        margin-top: 0;
-    }
-
-    /* Re-enable cursor on larger screens */
     body {
-        cursor: all-scroll;
+        cursor: all-scroll; /* Re-enable cursor */
     }
     .cursor-dot, .cursor-light {
-        display: block; /* Or whatever initial display value they have */
+        display: block; /* Ensure they are visible */
+    }
+
+    /* Header */
+    header {
+        min-height: 80px;
+        padding: 1.2rem 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding-top: 90px;
+    }
+    .hero-content {
+        flex-direction: row-reverse; /* Photo on right */
+        text-align: left;
+    }
+    .hero-text {
+        padding-left: 50px;
+        padding-right: 0;
+        margin-top: 50px;
+        margin-bottom: 0;
+    }
+    .hero-photo {
+        margin-left: 30px; /* Space between photo and text */
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
