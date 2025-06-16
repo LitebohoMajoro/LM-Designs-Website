@@ -1,9 +1,9 @@
-// src/pages/HomePage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import PortfolioItem from '../components/PortfolioItem';
 
 // And for your hero section image:
 import diteImage from '../assets/Dite.webp'; // Assuming Dite.webp is in src/assets
+
 const portfolioData = [
     {
         id: 1,
@@ -56,7 +56,6 @@ const portfolioData = [
         software: 'Illustrator'
     },
     {
-        
         id: 6,
         type: 'image',
         category: 'illustrator',
@@ -151,9 +150,12 @@ const portfolioData = [
     },
 ];
 
+const ITEMS_PER_LOAD = 6; // Number of items to display initially and load more
+
 const HomePage = () => {
     const [activeFilter, setActiveFilter] = useState('all');
-    const [displayItems, setDisplayItems] = useState(portfolioData);
+    const [visibleItemsCount, setVisibleItemsCount] = useState(ITEMS_PER_LOAD);
+    const [filteredData, setFilteredData] = useState(portfolioData); // Holds the currently filtered items
 
     // Refs for scroll animations
     const heroTextRef = useRef(null);
@@ -162,15 +164,24 @@ const HomePage = () => {
     const filterBtnRefs = useRef([]);
     const portfolioItemRefs = useRef([]);
 
-
+    // Effect to update filteredData and reset visible items when activeFilter changes
     useEffect(() => {
+        let newFilteredData = [];
         if (activeFilter === 'all') {
-            setDisplayItems(portfolioData);
+            newFilteredData = portfolioData;
         } else {
-            setDisplayItems(portfolioData.filter(item => item.category === activeFilter));
+            newFilteredData = portfolioData.filter(item => item.category === activeFilter);
         }
+        setFilteredData(newFilteredData);
+        setVisibleItemsCount(ITEMS_PER_LOAD); // Reset visible items when filter changes
     }, [activeFilter]);
 
+    // Function to handle "See More" button click
+    const handleSeeMore = () => {
+        setVisibleItemsCount(prevCount => prevCount + ITEMS_PER_LOAD);
+    };
+
+    // Effect for scroll animations
     useEffect(() => {
         const observerOptions = {
             root: null,
@@ -187,21 +198,24 @@ const HomePage = () => {
             });
         }, observerOptions);
 
+        // Collect all elements to observe
         const elementsToObserve = [
             heroTextRef.current,
             heroPhotoRef.current,
             filterSectionRef.current,
             ...filterBtnRefs.current,
-            ...portfolioItemRefs.current
-        ].filter(Boolean);
+            // Only observe currently displayed portfolio items
+            ...portfolioItemRefs.current.slice(0, visibleItemsCount).filter(Boolean)
+        ].filter(Boolean); // Filter out any nulls
 
         elementsToObserve.forEach(el => observer.observe(el));
 
         return () => {
             elementsToObserve.forEach(el => observer.unobserve(el));
         };
-    }, [displayItems]);
+    }, [visibleItemsCount, filteredData]); // Re-run effect when visibleItemsCount or filteredData changes
 
+    // Effect for smooth scrolling
     useEffect(() => {
         const handleSmoothScroll = (e) => {
             const targetId = e.target.getAttribute('href');
@@ -228,6 +242,10 @@ const HomePage = () => {
             });
         };
     }, []);
+
+    // Determine which items to display
+    const itemsToDisplay = filteredData.slice(0, visibleItemsCount);
+    const hasMoreItems = visibleItemsCount < filteredData.length;
 
     return (
         <>
@@ -291,7 +309,7 @@ const HomePage = () => {
                     </div>
 
                     <div className="portfolio-grid">
-                        {displayItems.map((item, index) => (
+                        {itemsToDisplay.map((item, index) => (
                             <PortfolioItem
                                 key={item.id}
                                 item={item}
@@ -299,6 +317,14 @@ const HomePage = () => {
                             />
                         ))}
                     </div>
+
+                    {hasMoreItems && (
+                        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                            <button className="cta-button" onClick={handleSeeMore}>
+                                See More
+                            </button>
+                        </div>
+                    )}
                 </div>
             </section>
         </>
