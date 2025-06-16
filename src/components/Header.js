@@ -32,7 +32,7 @@ const Header = () => {
         <header>
             <div className="container navbar">
                 <div className="logo">
-                    LMDesigns
+                    LM Designs
                 </div>
                 <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
                     <li>
