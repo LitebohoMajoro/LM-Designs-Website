@@ -916,3 +916,72 @@ html {
         display: block; /* Or whatever initial display value they have */
     }
 }
+/* Add these styles to your main CSS file, preferably near your .hamburger styles */
+
+/* Hamburger Bar Styling */
+.hamburger {
+    display: none; /* Hidden by default, shown in media query */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above other content when open */
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--light); /* Use your light color variable */
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Animation for hamburger icon when active */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Responsive adjustments (ensure these are within your @media (max-width: 768px) block or a similar mobile breakpoint) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex; /* Show hamburger on smaller screens */
+    }
+
+    .nav-links {
+        /* Keep existing styles */
+        right: -100%; /* Hidden by default */
+        position: fixed;
+        top: 70px; /* Adjust based on your header height */
+        flex-direction: column;
+        background: rgba(18, 18, 18, 0.95);
+        width: 100%;
+        height: calc(100vh - 70px); /* Make menu take full height below header */
+        text-align: center;
+        transition: right 0.5s ease-in-out; /* Add transition for smooth slide */
+        padding: 2rem 0;
+        z-index: 999;
+        overflow-y: auto; /* Allow scrolling if menu content overflows */
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in menu */
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0; /* Space out menu items */
+    }
+
+    .nav-links a {
+        padding: 10px 0; /* Make links larger tap targets */
+        font-size: 1.2rem; /* Larger font size for readability */
+    }
+}
