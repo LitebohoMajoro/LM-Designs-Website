@@ -178,12 +178,13 @@ header {
 .hero-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around; /* Changed to space-around for better spacing */
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px; /* Consistent padding */
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-direction: row-reverse; /* Puts photo on the right */
 }
 
 .hero-text {
@@ -192,9 +193,11 @@ header {
     transform: translateY(20px) scale(0.95);
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
     flex: 1;
-    padding-right: 50px;
+    padding-left: 50px; /* Adjusted padding to the left as photo is on the right */
+    padding-right: 0; /* Removed old padding */
     /* Ensure text takes full width on small screens before photo */
     min-width: 300px; /* Prevent text from becoming too narrow */
+    margin-top: 50px; /* Pushes the h1 down */
 }
 
 .hero-photo {
@@ -210,7 +213,7 @@ header {
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
     position: relative;
     z-index: 2;
-    margin-left: auto; /* Push to the right on desktop */
+    margin-left: 0; /* Removed auto margin, flex-direction handles it */
 }
 
 .hero-photo img {
@@ -670,7 +673,9 @@ html {
 
     .hero-text {
         padding-right: 0; /* Remove right padding */
+        padding-left: 0; /* Remove left padding */
         padding-bottom: 20px; /* Add space below text when photo is above */
+        margin-top: 0; /* Reset margin-top for mobile */
     }
 
     .hero h1 {
@@ -769,7 +774,7 @@ html {
 /* Medium-sized devices (e.g., tablets in portrait, larger phones) */
 @media (min-width: 481px) and (max-width: 768px) {
     /* You already have a good foundation for this breakpoint.
-       I've refined some values and added more consistent scaling. */
+        I've refined some values and added more consistent scaling. */
 
     body {
         font-size: 15px; /* Slightly smaller base font for tablets/larger phones */
@@ -819,7 +824,9 @@ html {
 
     .hero-text {
         padding-right: 0;
+        padding-left: 0; /* Remove left padding for mobile */
         margin-bottom: 30px; /* Space between text and photo */
+        margin-top: 0; /* Reset margin-top for mobile */
     }
 
     .hero-photo {
@@ -885,17 +892,19 @@ html {
 @media (min-width: 769px) {
     /* You can add specific styles here if you want things to look different on very large screens */
     .hero-content {
-        flex-direction: row; /* Ensure elements are side-by-side */
+        flex-direction: row-reverse; /* Ensure elements are side-by-side with photo on right */
         text-align: left; /* Align text to left */
     }
 
     .hero-text {
-        padding-right: 50px; /* Restore desktop padding */
+        padding-left: 50px; /* Restore desktop padding */
+        padding-right: 0;
         margin-bottom: 0;
+        margin-top: 50px; /* Keep h1 lower on desktop */
     }
 
     .hero-photo {
-        margin-left: auto; /* Push photo to the right */
+        margin-left: 0; /* Removed auto margin */
         margin-top: 0;
     }
 
