@@ -33,6 +33,7 @@ const Header = () => {
         <header>
             <div className="container navbar">
                 <div className="logo">
+        <i class="fas fa-palette"></i>
                     LM Designs
                 </div>
                 <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
