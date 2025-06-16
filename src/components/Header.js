@@ -1,6 +1,7 @@
 // src/components/Header.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -46,6 +47,10 @@ const Header = () => {
                     </li>
                 </ul>
                 <div className="hamburger" onClick={toggleMobileMenu}>
+                    {/* Hamburger bars */}
+                    <div className="bar"></div>
+                    <div className="bar"></div>
+                    <div className="bar"></div>
                 </div>
             </div>
         </header>
