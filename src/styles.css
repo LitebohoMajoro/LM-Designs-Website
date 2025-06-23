@@ -807,24 +807,32 @@ footer.visible {
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Single column layout for 345px width */
-        gap: 20px;
-        padding: 0 15px 3rem; /* Add horizontal padding to the grid */
+        /* Modified: Changed from 1fr to aim for two columns */
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Aims for 2 columns, each at least 140px wide */
+        gap: 15px; /* Reduced gap between items to save space */
+        padding: 0 10px 3rem; /* Adjusted horizontal padding to free up more width */
+        justify-content: center; /* Centers the grid items if they don't perfectly fill the width */
     }
     .portfolio-item {
-        margin: 0 auto; /* Center items if they don't take full width */
-        max-width: 315px; /* Adjust max width to fit within 345px with padding */
+        /* Removed fixed max-width and margin auto as grid will manage sizing and alignment */
+        max-width: unset; /* Let the grid system control item width */
+        margin: unset;
     }
     .portfolio-info {
-        padding: 15px; /* Reduced padding */
+        padding: 10px; /* Reduced padding inside the info section for more space */
     }
     .portfolio-info h3 {
-        font-size: 1.2rem;
+        font-size: 1.0rem; /* Slightly smaller heading font size */
+        margin-bottom: 5px; /* Reduced margin */
     }
     .portfolio-info p {
-        font-size: 0.85rem;
+        font-size: 0.75rem; /* Smaller paragraph font size for very tight space */
+        margin-bottom: 10px; /* Reduced margin */
     }
-
+    .software-tag {
+        font-size: 0.7rem; /* Smaller tag font size */
+        padding: 3px 8px; /* Smaller tag padding */
+    }
     /* Contact Section */
     .contact-section {
         padding: 3rem 0; /* Reduced padding */
@@ -953,8 +961,11 @@ footer.visible {
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Allow for slightly larger cards */
-        padding: 0 20px 5rem;
+        /* Modified: Changed from 1fr to aim for two columns */
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Aims for 2 columns, each at least 140px wide */
+        gap: 15px; /* Reduced gap between items to save space */
+        padding: 0 10px 3rem; /* Adjusted horizontal padding to free up more width */
+        justify-content: center; /* Centers the grid items if they don't perfectly fill the width */
     }
     .contact-container {
         padding: 0 20px;
@@ -1057,8 +1068,11 @@ footer.visible {
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Consistent desktop grid */
-        padding: 0 20px 5rem; /* Restore desktop padding */
+        /* Modified: Changed from 1fr to aim for two columns */
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Aims for 2 columns, each at least 140px wide */
+        gap: 15px; /* Reduced gap between items to save space */
+        padding: 0 10px 3rem; /* Adjusted horizontal padding to free up more width */
+        justify-content: center; /* Centers the grid items if they don't perfectly fill the width */
     }
     .contact-container {
         padding: 0;
