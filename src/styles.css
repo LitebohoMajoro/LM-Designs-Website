@@ -300,8 +300,11 @@ header {
     box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
 }
 
+---
 
-/* Software Filter */
+## **Software Filter**
+
+```css
 .filter-section {
     padding: 5rem 0 2rem;
     text-align: center;
@@ -311,6 +314,28 @@ header {
 
 .filter-section.visible {
     animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.filter-section h5 { /* Added styling for h5 */
+    font-size: 1.5rem; /* Adjust as needed */
+    color: var(--accent); /* Using accent color for prominence */
+    margin-bottom: 1rem; /* Space below the heading */
+    text-transform: uppercase; /* Make it uppercase */
+    letter-spacing: 2px; /* Add some letter spacing */
+    position: relative;
+    display: inline-block;
+}
+
+.filter-section h5::after { /* Optional: Add an underline or decorative element */
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 1px;
 }
 
 .filter-section h2 {
@@ -724,6 +749,9 @@ footer.visible {
     }
 
     /* Filter Section */
+    .filter-section h5 { /* Responsive adjustment for h5 */
+        font-size: 1.2rem;
+    }
     .filter-section h2 {
         font-size: 2rem;
     }
@@ -850,6 +878,9 @@ footer.visible {
     }
 
     /* Filter Section */
+    .filter-section h5 { /* Responsive adjustment for h5 */
+        font-size: 1.3rem;
+    }
     .filter-section h2 {
         font-size: 2.2rem;
     }
