@@ -91,39 +91,35 @@ body::before {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    /* Removed padding from here as it's now applied directly to .navbar */
 }
 
-/* MODIFIED: Header for smaller size */
 header {
     background: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(10px);
-    padding: 0.6rem 0; /* Further reduced vertical padding */
+    padding: 0.6rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-    min-height: 50px; /* Further reduced minimum height */
+    min-height: 50px;
     display: flex;
     align-items: center;
 }
 
-/* MODIFIED: Navbar for better alignment with hamburger */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Keeps logo and hamburger on edges */
+    justify-content: space-between;
     align-items: center;
-    width: 100%; /* Allow navbar to take full container width */
-    padding: 0 20px; /* Add padding here for alignment within the header */
-    max-width: 1200px; /* Constrain its content width as before */
-    margin: 0 auto; /* Center the navbar content */
+    width: 100%;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* MODIFIED: Logo for smaller size */
 .logo {
-    font-size: 1.4rem; /* Slightly smaller font size for the logo */
+    font-size: 1.4rem;
     font-weight: 700;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -134,45 +130,44 @@ header {
 }
 
 .logo i {
-    margin-right: 8px; /* Slightly reduced margin */
-    font-size: 1.8rem; /* Adjusted icon size */
+    margin-right: 8px;
+    font-size: 1.8rem;
 }
 
-/* MODIFIED: Navigation links - Default hidden, styled for full-screen overlay */
 .nav-links {
     list-style: none;
-    position: fixed; /* Fixed position for overlay */
-    top: 0; /* Start from the top of the viewport */
-    left: 100%; /* Hide off-screen to the right by default */
+    position: fixed;
+    top: 0;
+    left: 100%;
     width: 100%;
     height: 100%;
-    background: rgba(18, 18, 18, 0.98); /* Darker background for overlay */
-    backdrop-filter: blur(15px); /* Stronger blur for overlay */
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(15px);
     display: flex;
-    flex-direction: column; /* Stack links vertically */
-    justify-content: center; /* Center links vertically */
-    align-items: center; /* Center links horizontally */
-    z-index: 999; /* Below hamburger but above content */
-    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition */
-    opacity: 0; /* Start invisible */
-    pointer-events: none; /* Disable interaction when hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .nav-links.active {
-    left: 0; /* Slide in from the right */
-    opacity: 1; /* Fade in */
-    pointer-events: auto; /* Enable interaction when visible */
+    left: 0;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .nav-links li {
-    margin: 1.2rem 0; /* Spacing between menu items */
+    margin: 1.2rem 0;
 }
 
 .nav-links a {
     color: var(--light);
     text-decoration: none;
-    font-weight: 600; /* Bolder for menu items */
-    font-size: 2rem; /* Larger font size for menu items */
+    font-weight: 600;
+    font-size: 2rem;
     position: relative;
     padding: 5px 0;
     transition: var(--transition);
@@ -184,7 +179,7 @@ header {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 3px; /* Slightly thicker underline */
+    height: 3px;
     background: var(--accent);
     transition: var(--transition);
 }
@@ -197,16 +192,15 @@ header {
     width: 100%;
 }
 
-/* MODIFIED: Hamburger - Always displayed by default on ALL screen sizes */
 .hamburger {
-    display: flex; /* Always display the hamburger */
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
     cursor: pointer;
-    z-index: 1001; /* Above the nav-links overlay */
-    position: relative; /* For z-index to work against fixed nav-links */
+    z-index: 1001;
+    position: relative;
 }
 
 .hamburger .bar {
@@ -229,13 +223,14 @@ header {
     transform: translateY(-11px) rotate(-45deg);
 }
 
+/* Base Hero Section Styles (Desktop/Larger Screens) */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
-    padding-top: 80px; /* Default space for fixed header on larger screens */
-    height: auto; /* Allow hero to adjust height on smaller screens */
+    padding-top: 80px;
+    height: auto;
 }
 
 .hero-content {
@@ -246,7 +241,7 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
     flex-direction: row-reverse; /* Default: Puts photo on the right */
     text-align: left; /* Default text alignment */
 }
@@ -256,11 +251,11 @@ header {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
-    flex: 1; /* Allow text to grow and shrink */
-    padding-left: 50px; /* Space on left of text, as photo is on right */
+    flex: 1;
+    padding-left: 50px;
     padding-right: 0;
-    min-width: 300px; /* Prevent text from becoming too narrow */
-    margin-top: 50px; /* Pushes the h1 down on desktop */
+    min-width: 300px;
+    margin-top: 50px;
 }
 
 .hero-photo {
@@ -276,7 +271,7 @@ header {
     animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
     position: relative;
     z-index: 2;
-    margin-left: 30px; /* Space between photo and text */
+    margin-left: 30px;
     margin-right: 0;
 }
 
@@ -292,9 +287,9 @@ header {
 }
 
 .hero h1 {
-    font-size: 1.5rem;
+    font-size: 2.5rem; /* Reverted to original desktop size for default */
     margin-bottom: 0.7rem;
-    line-height: 0.7;
+    line-height: 1.2; /* Adjusted base line-height for better readability */
 }
 
 .hero h1 span {
