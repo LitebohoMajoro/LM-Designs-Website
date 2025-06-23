@@ -113,7 +113,7 @@ header {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 20px;
     font-weight: 700;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -135,7 +135,7 @@ header {
 
 .nav-links li {
     /* Reduced margin for less spacing between links */
-    margin-left: 0.5rem; /* Changed from 1.5rem to 1rem */
+    margin-left: 5px; 
 }
 
 .nav-links a {
@@ -143,7 +143,7 @@ header {
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    padding: 5px 0;
+    padding: 3px 0;
     transition: var(--transition);
 }
 
@@ -170,14 +170,14 @@ header {
     display: none;
     flex-direction: column;
     justify-content: space-around;
-    width: 30px;
-    height: 25px;
+    width: 10px;
+    height: 5px;
     cursor: pointer;
     z-index: 1001;
 }
 
 .hamburger .bar {
-    width: 100%;
+    width: 70%;
     height: 3px;
     background-color: var(--light);
     border-radius: 5px;
