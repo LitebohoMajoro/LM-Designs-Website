@@ -138,17 +138,18 @@ header {
     list-style: none;
     position: fixed;
     top: 0;
-    left: 100%;
+    left: 100%; /* Off-screen by default */
     width: 100%;
     height: 100%;
     background: rgba(18, 18, 18, 0.98);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(0px); /* Start with no blur when inactive for smooth transition */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 999;
-    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    /* ADD backdrop-filter to the transition below */
+    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out, backdrop-filter 0.5s ease-in-out;
     opacity: 0;
     pointer-events: none;
 }
@@ -157,8 +158,8 @@ header {
     left: 0;
     opacity: 1;
     pointer-events: auto;
+    backdrop-filter: blur(15px); /* Apply blur when active */
 }
-
 .nav-links li {
     margin: 1.2rem 0;
 }
