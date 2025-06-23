@@ -141,7 +141,7 @@ const Portfolio = ({ activeFilter, setActiveFilter }) => {
     return (
         <section id="portfolio">
             <div className="container filter-section">
-                <h2>My Design Collection</h2>
+                <h5>My Design Collection</h5>
                 <div className="filter-buttons">
                     <button
                         className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
