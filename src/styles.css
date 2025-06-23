@@ -316,8 +316,8 @@ header {
     color: white;
     padding-left:30px;
     padding-right:30px;
-    padding-top: 15px:
-    padding-bottom: 15px:
+    padding-top: 15px; /* Fixed typo */
+    padding-bottom: 15px; /* Fixed typo */
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
@@ -367,6 +367,7 @@ header {
     font-size: 1.5rem; /* Reduced from 2.5rem to h5 equivalent */
     margin-bottom: 1.5rem; /* Adjusted margin */
     text-align: center; /* Ensure it's centered */
+    position: relative; /* Added for ::after pseudo-element */
 }
 
 .filter-section h2::after {
@@ -387,6 +388,7 @@ header {
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 3rem;
+    padding: 0 10px; /* Added padding to prevent buttons touching edges */
 }
 
 .filter-btn {
@@ -403,6 +405,8 @@ header {
     gap: 8px;
     opacity: 0;
     transform: translateY(20px) scale(0.95);
+    flex-grow: 1; /* Allow buttons to grow to fill space */
+    max-width: 100%; /* Ensure buttons don't exceed container width */
 }
 
 .filter-btn.visible {
@@ -509,6 +513,7 @@ header {
 .contact-container {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 20px; /* Added padding for smaller screens */
 }
 
 .contact-container h2 {
@@ -694,64 +699,187 @@ footer.visible {
 
 /* Responsive Design - Adjustments and additions */
 
-/* Smallest mobile phones (up to ~400px width, covering 318px) */
-@media (max-width: 400px) { /* Adjusted max-width to cover 318px and similar small screens */
+/* Smallest mobile phones (up to ~400px width, covering 345px) */
+@media (max-width: 400px) {
     body {
-        font-size: 14px;
+        font-size: 14px; /* Slightly smaller base font */
         cursor: default; /* Disable cursor effect */
     }
     .cursor-dot, .cursor-light {
-        display: none;
+        display: none; /* Hide cursor effects on small screens */
     }
 
-    /* MODIFIED: Header for smallest mobile */
+    /* Header adjustments for 345px width */
     header {
-        min-height: 45px; /* Even smaller on tiny screens */
-        padding: 0.3rem 0;
+        min-height: 48px; /* Slightly adjusted min-height for better balance */
+        padding: 0.4rem 0; /* Adjusted padding */
     }
-    /* MODIFIED: Logo for smallest mobile */
+    .navbar {
+        padding: 0 15px; /* Reduced horizontal padding for narrow screens */
+    }
     .logo {
-        font-size: 1.2rem;
+        font-size: 1.3rem; /* Adjusted logo size */
     }
     .logo i {
-        font-size: 1.3rem;
+        font-size: 1.6rem; /* Adjusted icon size */
     }
 
-    /* Hamburger bars might need thinner styling on very small screens if they look too thick */
+    /* Hamburger adjustments */
     .hamburger {
-        width: 25px; /* Slightly smaller hamburger */
-        height: 20px;
+        width: 28px;
+        height: 23px;
     }
     .hamburger .bar {
-        height: 2px;
+        height: 2.5px;
     }
     .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg); /* Adjusted for thinner bars */
+        transform: translateY(10px) rotate(45deg);
     }
     .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg); /* Adjusted for thinner bars */
+        transform: translateY(-10px) rotate(-45deg);
     }
 
     /* Nav links for overlay on mobile */
     .nav-links li {
-        margin: 1rem 0;
+        margin: 1.1rem 0; /* Slightly reduced spacing */
     }
     .nav-links a {
-        font-size: 1.8rem;
+        font-size: 1.9rem; /* Adjusted menu item font size */
     }
 
-    /* Hero Section */
+    /* Hero Section - Optimized for 345px width */
     .hero {
-        padding-top: 60px; /* Adjust based on header height */
+        padding-top: 65px; /* Adjust based on header height */
+        min-height: auto; /* Allow hero to be shorter on mobile if content fits */
     }
-    /* ... (rest of hero section mobile styles are fine) ... */
+    .hero-content {
+        flex-direction: column; /* Stack photo and text vertically */
+        text-align: center; /* Center text on mobile */
+        padding: 20px 15px; /* Adjusted padding for very small screens */
+    }
+    .hero-photo {
+        width: 200px; /* Reduced photo size for narrow screens */
+        height: 200px; /* Reduced photo size */
+        margin: 20px auto; /* Center photo and add vertical margin */
+        order: -1; /* Place photo before text (on top) */
+    }
+    .hero-photo img {
+        border-radius: 50%; /* Ensure image is circular within its container */
+    }
+    .hero-text {
+        padding-left: 0; /* Remove left padding */
+        padding-right: 0; /* Remove right padding */
+        margin-top: 20px; /* Adjust margin after photo */
+        max-width: 100%; /* Ensure text takes full width */
+        min-width: unset; /* Remove min-width constraint */
+    }
+    .hero h1 {
+        font-size: 1.8rem; /* Adjusted heading size for mobile impact */
+        line-height: 1.2; /* Better line height for readability */
+        margin-bottom: 0.8rem;
+    }
+    .hero p {
+        font-size: 1rem; /* Smaller paragraph font size for readability */
+        margin-bottom: 1.5rem;
+    }
+    .cta-button {
+        padding: 12px 25px; /* Adjusted padding for the button */
+        width: 90%; /* Make button almost full width */
+        max-width: 280px; /* Limit max width for button */
+        margin: 0 auto; /* Center button */
+    }
 
-    /* Filter Section heading for mobile */
-    .filter-section h2 {
-        font-size: 1.3rem; /* Further reduced for mobile */
+    /* Filter Section */
+    .filter-section {
+        padding: 3rem 0 1.5rem; /* Reduced padding */
     }
-    /* ... (rest of filter section mobile styles are fine) ... */
-    /* ... (portfolio, contact, footer mobile styles are fine) ... */
+    .filter-section h2 {
+        font-size: 1.6rem; /* Slightly larger for emphasis on mobile */
+        margin-bottom: 1.2rem;
+    }
+    .filter-buttons {
+        gap: 10px; /* Reduced gap between buttons */
+        padding: 0 10px; /* Maintain horizontal padding */
+        justify-content: center; /* Ensure buttons remain centered */
+    }
+    .filter-btn {
+        padding: 8px 18px; /* Smaller padding for filter buttons */
+        font-size: 0.9rem;
+        flex: 0 0 auto; /* Allow buttons to size based on content, but wrap */
+        max-width: unset; /* Allow natural button width */
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Single column layout for 345px width */
+        gap: 20px;
+        padding: 0 15px 3rem; /* Add horizontal padding to the grid */
+    }
+    .portfolio-item {
+        margin: 0 auto; /* Center items if they don't take full width */
+        max-width: 315px; /* Adjust max width to fit within 345px with padding */
+    }
+    .portfolio-info {
+        padding: 15px; /* Reduced padding */
+    }
+    .portfolio-info h3 {
+        font-size: 1.2rem;
+    }
+    .portfolio-info p {
+        font-size: 0.85rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+        padding: 3rem 0; /* Reduced padding */
+    }
+    .contact-container {
+        padding: 0 15px; /* Consistent horizontal padding */
+    }
+    .contact-container h2 {
+        font-size: 2rem; /* Adjusted heading size */
+        margin-bottom: 2rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px; /* Slightly smaller padding for inputs */
+        font-size: 0.95rem;
+    }
+    .form-group textarea {
+        min-height: 120px; /* Slightly smaller textarea height */
+    }
+    .contact-info {
+        padding: 20px; /* Adjusted padding */
+    }
+    .contact-methods {
+        flex-direction: column; /* Stack contact methods vertically */
+        gap: 15px;
+    }
+    .contact-method {
+        padding: 10px 15px; /* Adjusted padding */
+        min-width: unset; /* Remove min-width constraint */
+        max-width: 100%; /* Allow contact methods to take full width */
+    }
+    .contact-method span {
+        font-size: 0.9rem; /* Smaller text for contact methods */
+    }
+
+    /* Footer */
+    footer {
+        padding: 1.5rem 0;
+    }
+    .social-links {
+        gap: 15px; /* Reduced gap between social icons */
+    }
+    .social-links a {
+        width: 40px; /* Slightly smaller social icons */
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .copyright {
+        font-size: 0.8rem;
+    }
 }
 
 /* Medium-sized devices (e.g., tablets in portrait, larger phones - above 400px up to 768px) */
@@ -763,10 +891,13 @@ footer.visible {
         display: none;
     }
 
-    /* MODIFIED: Header for medium devices */
+    /* Header for medium devices */
     header {
         min-height: 50px;
         padding: 0.6rem 0;
+    }
+    .navbar {
+        padding: 0 20px;
     }
     /* Logo and hamburger sizes will be inherited from general styles */
     /* Nav links styles (as overlay) are also inherited and work well */
@@ -781,14 +912,64 @@ footer.visible {
     .hero {
         padding-top: 70px; /* Adjust based on header height */
     }
-    /* ... (rest of hero section medium styles are fine) ... */
+    .hero-content {
+        flex-direction: column; /* Stack photo and text vertically */
+        text-align: center; /* Center text */
+        padding: 30px 20px;
+    }
+    .hero-photo {
+        width: 250px; /* Slightly larger photo for medium screens */
+        height: 250px;
+        margin: 30px auto;
+        order: -1; /* Place photo before text (on top) */
+    }
+    .hero-text {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 30px;
+        max-width: 80%; /* Constrain text width for better readability */
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .cta-button {
+        padding: 14px 30px;
+        width: auto; /* Allow button to size naturally */
+        max-width: 300px;
+    }
 
     /* Filter Section heading for medium devices */
     .filter-section h2 {
-        font-size: 1.4rem; /* Adjusted for medium screens */
+        font-size: 2rem; /* Adjusted for medium screens */
     }
-    /* ... (rest of filter section medium styles are fine) ... */
-    /* ... (portfolio, contact, footer medium styles are fine) ... */
+    .filter-buttons {
+        gap: 15px;
+        padding: 0 20px;
+    }
+    .filter-btn {
+        flex: 1 1 auto; /* Allow buttons to flex more */
+        max-width: calc(50% - 10px); /* Two columns, considering gap */
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Allow for slightly larger cards */
+        padding: 0 20px 5rem;
+    }
+    .contact-container {
+        padding: 0 20px;
+    }
+    .contact-container h2 {
+        font-size: 2.2rem;
+    }
+    .contact-method {
+        flex: 1 1 calc(50% - 10px); /* Two columns for contact methods */
+        max-width: unset;
+    }
 }
 
 /* Larger screens / Desktops (>= 769px) */
@@ -800,22 +981,97 @@ footer.visible {
         display: block;
     }
 
-    /* MODIFIED: Header for desktop */
+    /* Header for desktop */
     header {
         min-height: 55px; /* Slightly reduced desktop header height */
         padding: 0.8rem 0;
     }
-    /* Nav links will now be handled by the hamburger overlay */
-    /* No direct changes to .nav-links needed here as its default state is hidden overlay */
+
+    /* Nav links will now be handled by the hamburger overlay (defaulted to hidden for larger screens) */
+    .nav-links {
+        position: static; /* Reset position for desktop */
+        left: auto;
+        opacity: 1;
+        pointer-events: auto;
+        flex-direction: row; /* Display links horizontally */
+        background: transparent;
+        backdrop-filter: none;
+        height: auto;
+        width: auto;
+        margin-left: auto; /* Push nav links to the right */
+    }
+    .nav-links li {
+        margin: 0 1.5rem; /* Horizontal spacing for desktop links */
+    }
+    .nav-links a {
+        font-size: 1rem; /* Standard font size for desktop links */
+    }
+    .hamburger {
+        display: none; /* Hide hamburger on desktop */
+    }
+
 
     /* Hero Section */
     .hero {
         padding-top: 70px; /* Adjust based on header height */
     }
-    /* ... (rest of hero section desktop styles are fine) ... */
+    .hero-content {
+        flex-direction: row-reverse; /* Photo on the right, text on the left */
+        text-align: left;
+        padding: 0 20px;
+    }
+    .hero-photo {
+        width: 320px;
+        height: 320px;
+        margin-left: 30px;
+        margin-right: 0;
+        margin-top: 0;
+        order: unset; /* Reset order */
+    }
+    .hero-text {
+        padding-left: 50px;
+        padding-right: 0;
+        margin-top: 50px;
+        max-width: 650px;
+    }
+    .hero h1 {
+        font-size: 2.5rem; /* Larger heading for desktop */
+        line-height: 1.2;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+    .cta-button {
+        padding: 15px 30px;
+        width: auto;
+    }
 
     /* Filter Section heading for desktop */
     .filter-section h2 {
-        font-size: 1.5rem; /* Consistent with h5 equivalent */
+        font-size: 2.5rem; /* Restore original desktop size */
+        margin-bottom: 1.5rem;
+    }
+    .filter-buttons {
+        padding: 0; /* Remove padding */
+    }
+    .filter-btn {
+        flex: 0 0 auto; /* Allow buttons to size naturally */
+        max-width: unset;
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Consistent desktop grid */
+        padding: 0 20px 5rem; /* Restore desktop padding */
+    }
+    .contact-container {
+        padding: 0;
+    }
+    .contact-container h2 {
+        font-size: 2.5rem;
+    }
+    .contact-method {
+        flex: 1 1 auto; /* Allow natural sizing */
+        max-width: 250px;
     }
 }
