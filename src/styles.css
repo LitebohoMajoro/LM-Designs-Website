@@ -197,7 +197,7 @@ header {
     width: 100%;
 }
 
-/* MODIFIED: Hamburger - Always displayed */
+/* MODIFIED: Hamburger - Always displayed by default on ALL screen sizes */
 .hamburger {
     display: flex; /* Always display the hamburger */
     flex-direction: column;
@@ -265,8 +265,8 @@ header {
 
 .hero-photo {
     flex-shrink: 0;
-    width: 160px;
-    height: 160px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid var(--primary);
@@ -691,8 +691,8 @@ footer.visible {
 
 /* Responsive Design - Adjustments and additions */
 
-/* Smallest mobile phones first */
-@media (max-width: 480px) {
+/* Smallest mobile phones (up to ~400px width, covering 318px) */
+@media (max-width: 400px) { /* Adjusted max-width to cover 318px and similar small screens */
     body {
         font-size: 14px;
         cursor: default; /* Disable cursor effect */
@@ -715,14 +715,18 @@ footer.visible {
     }
 
     /* Hamburger bars might need thinner styling on very small screens if they look too thick */
+    .hamburger {
+        width: 25px; /* Slightly smaller hamburger */
+        height: 20px;
+    }
     .hamburger .bar {
         height: 2px;
     }
     .hamburger.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg); /* Adjusted for thinner bars */
+        transform: translateY(8px) rotate(45deg); /* Adjusted for thinner bars */
     }
     .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg); /* Adjusted for thinner bars */
+        transform: translateY(-8px) rotate(-45deg); /* Adjusted for thinner bars */
     }
 
     /* Nav links for overlay on mobile */
@@ -747,8 +751,8 @@ footer.visible {
     /* ... (portfolio, contact, footer mobile styles are fine) ... */
 }
 
-/* Medium-sized devices (e.g., tablets in portrait, larger phones) */
-@media (min-width: 481px) and (max-width: 768px) {
+/* Medium-sized devices (e.g., tablets in portrait, larger phones - above 400px up to 768px) */
+@media (min-width: 401px) and (max-width: 768px) {
     body {
         cursor: default;
     }
