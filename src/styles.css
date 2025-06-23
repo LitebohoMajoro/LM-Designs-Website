@@ -89,31 +89,33 @@ body::before {
     padding: 0 20px;
 }
 
+/* MODIFIED: Header for smaller size */
 header {
     background: rgba(18, 18, 18, 0.9);
     backdrop-filter: blur(10px);
-    padding: 1.2rem 0;
+    padding: 0.8rem 0; /* Reduced vertical padding */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-    min-height: 70px;
+    min-height: 60px; /* Reduced minimum height */
     display: flex;
     align-items: center;
 }
 
+/* MODIFIED: Navbar for smaller width */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Reduced width for a smaller container */
-    width: 50%; /* Changed from 80% to 70% */
+    width: 75%; /* Reduced width for a smaller container */
 }
 
+/* MODIFIED: Logo for smaller size */
 .logo {
-    font-size: 20px;
+    font-size: 1.5rem; /* Smaller font size for the logo */
     font-weight: 700;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -133,9 +135,9 @@ header {
     list-style: none;
 }
 
+/* MODIFIED: Nav links for less spacing */
 .nav-links li {
-    /* Reduced margin for less spacing between links */
-    margin-left: 5px; 
+    margin-left: 1rem; /* Reduced horizontal spacing between links */
 }
 
 .nav-links a {
@@ -143,7 +145,7 @@ header {
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    padding: 3px 0;
+    padding: 5px 0;
     transition: var(--transition);
 }
 
@@ -170,14 +172,14 @@ header {
     display: none;
     flex-direction: column;
     justify-content: space-around;
-    width: 10px;
-    height: 5px;
+    width: 30px;
+    height: 25px;
     cursor: pointer;
     z-index: 1001;
 }
 
 .hamburger .bar {
-    width: 70%;
+    width: 100%;
     height: 3px;
     background-color: var(--light);
     border-radius: 5px;
@@ -296,11 +298,7 @@ header {
     box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
 }
 
----
-
-## **Software Filter**
-
-```css
+/* Software Filter */
 .filter-section {
     padding: 5rem 0 2rem;
     text-align: center;
@@ -330,14 +328,14 @@ header {
     }
 }
 
-.filter-section h5 {
+.filter-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
     display: inline-block;
 }
 
-.filter-section h5::after {
+.filter-section h2::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -676,16 +674,17 @@ footer.visible {
         padding: 0 15px;
     }
 
-    /* Header */
+    /* MODIFIED: Header for smaller size on smallest mobile */
     header {
-        min-height: 60px;
-        padding: 0.8rem 0;
+        min-height: 50px; /* Make it even smaller on tiny screens */
+        padding: 0.5rem 0;
     }
+    /* MODIFIED: Logo for smaller size on smallest mobile */
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.3rem; /* Further reduce logo size on mobile */
     }
     .logo i {
-        font-size: 1.7rem;
+        font-size: 1.5rem; /* Further reduce icon size on mobile */
     }
 
     /* Hero Section */
@@ -794,13 +793,14 @@ footer.visible {
         display: none;
     }
 
-    /* Header */
+    /* MODIFIED: Header for smaller size on medium devices */
     header {
-        min-height: 70px;
+        min-height: 60px; /* Adjust header height for tablets */
     }
     .nav-links {
         position: fixed;
-        top: 70px;
+        /* MODIFIED: Adjust top to match new header height */
+        top: 60px; /* Matches the new min-height of header */
         right: -100%;
         flex-direction: column;
         background: rgba(18, 18, 18, 0.95);
@@ -889,10 +889,10 @@ footer.visible {
         display: block; /* Ensure they are visible */
     }
 
-    /* Header */
+    /* MODIFIED: Header for smaller size on desktop */
     header {
-        min-height: 80px;
-        padding: 1.2rem 0;
+        min-height: 70px; /* Slightly reduce desktop header height */
+        padding: 1rem 0;
     }
 
     /* Hero Section */
